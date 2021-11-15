@@ -1,75 +1,83 @@
 <script setup>
-import { reactive } from 'vue'
-import { BInputGroup, BInput } from '@compromis/blobby'
-
-const form = reactive({
-  first_name: '',
-  last_name: '',
-  email: '',
-  DNI: ''
-})
+import BCard from '@compromis/blobby/components/card/BCard.vue'
 </script>
 
 <template>
-  <main class="index">
-    <header class="hero">
-      <h1 class="text-7xl text-white">Col·labora</h1>
-    </header>
-    <section class="section">
-      {{ form }}
-      <input type="text" v-model="form.first_name" />
-      <b-input-group title="Dades personals">
-        <b-input
-          variant="float"
-          label="Nom"
-          name="first_name"
-          v-model="form.first_name"
-          span="2"
-        />
-        <b-input
-          variant="float"
-          label="Cognoms"
-          name="last_name"
-          v-model="form.last_name"
-          span="2"
-        />
-        <b-input
-          variant="float"
-          type="email" 
-          label="E-mail"
-          name="email"
-          v-model="form.email"
-          span="2"
-        />
-        <b-input
-          variant="float" 
-          label="DNI/NIE"
-          name="DNI"
-          v-model="form.DNI"
-          span="2"
-        />
-      </b-input-group>
-    </section>
-  </main>
+  <section class="section">
+    <h2 class="mb-4">Quant vols aportar hui?</h2>
+    <div class="donate-grid">
+      <b-card to="/donate/5" href="/donate/5" padded rises class="donate-card" content-class="d-flex flex-column h-100">
+        <span class="donate-amount text-4xl">5€</span>
+        <span class="donate-text text-muted text-2xl">Ajudes a fer 30 cartells</span>
+        <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/285/envelope_2709-fe0f.png" class="donate-emoji" alt="">
+      </b-card>
+      <b-card to="/donate/10" href="/donate/10" padded rises class="donate-card" content-class="d-flex flex-column h-100">
+        <span class="donate-amount text-4xl">10€</span>
+        <span class="donate-text text-muted text-2xl">Ajudes a enviar 50 cartes amb paperetes</span>
+        <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/285/microphone_1f3a4.png" class="donate-emoji" alt="">
+      </b-card>
+      <b-card to="/donate/30" href="/donate/30" padded rises class="donate-card" content-class="d-flex flex-column h-100">
+        <span class="donate-amount text-4xl">30€</span>
+        <span class="donate-text text-muted text-2xl">100 cartells electorals</span>
+        <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/285/speak-no-evil-monkey_1f64a.png" class="donate-emoji" alt="">
+      </b-card>
+      <b-card to="/donate/50" href="/donate/50" padded rises class="donate-card" content-class="d-flex flex-column h-100">
+        <span class="donate-amount text-4xl">50€</span>
+        <span class="donate-text text-muted text-2xl">1 estand informatiu</span>
+        <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/285/speaking-head_1f5e3-fe0f.png" class="donate-emoji" alt="">
+      </b-card>
+      <b-card to="/donate/100" href="/donate/100" padded rises class="donate-card" content-class="d-flex flex-column h-100">
+        <span class="donate-amount text-4xl">100€</span>
+        <span class="donate-text text-muted text-2xl">20 pancartes de carrer</span>
+        <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/285/dog-face_1f436.png" class="donate-emoji" alt="">
+      </b-card>
+      <b-card padded>
+        Other
+      </b-card>
+    </div>
+  </section>
 </template>
 
 <style lang="scss" scoped>
   @import '@compromis/blobby/scss/variables';
 
-  .hero {
-    margin: 4vh 0;
+  .donate-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 2rem;
+    margin-bottom: 2rem;
+  }
 
-    h1 {
-      font-weight: 500;
+  .donate-card {
+    position: relative;
+    display: flex;
+    aspect-ratio: 1 / 1;
+
+    &:hover {
+      color: var(--text-color);
+      --scale: 1;
+      --rotate: 4deg;
+      transform: rotate(-4deg) scale(1.08) !important;
+      z-index: 100;
     }
 
-    .text-7xl {
-      font-size: 7rem;
+    &:active {
+      transform: rotate(1deg) scale(.95) !important;
     }
   }
 
-  .section {
-    color: $white;
-    max-width: 950px;
+  .donate-text {
+    margin-top: auto;
+    line-height: 1.1;
+  }
+
+  .donate-emoji {
+    position: absolute;
+    top: 1rem;
+    right: -2.5rem;
+    width: 125px;
+    transform: scale(var(--scale, 0)) rotate(var(--rotate, 2deg));
+    z-index: 10;
+    transition: .2s ease;
   }
 </style>

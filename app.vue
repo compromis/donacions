@@ -1,5 +1,6 @@
 <script setup>
-import { BNav } from '@compromis/blobby'
+import BNav from '@compromis/blobby/components/nav/BNav.vue'
+import BNavItem from '@compromis/blobby/components/nav/BNavItem.vue'
 </script>
 
 <template>
@@ -8,16 +9,27 @@ import { BNav } from '@compromis/blobby'
       <template #logo-append>
         <nuxt-link to="/">Donacions</nuxt-link>
       </template>
+
+      <b-nav-item to="/">
+        Castellano
+      </b-nav-item>
     </b-nav>
 
     <div class="container">
-      <NuxtPage />
+      <main class="index">
+        <header class="hero">
+          <h1 class="text-7xl text-white">Col·labora</h1>
+        </header>
+
+        <NuxtPage />
+      </main>
     </div>
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@compromis/blobby/scss/variables';
+
 .background {
     position: relative;
     background-image: url(./assets/images/background.jpg);
@@ -42,5 +54,22 @@ import { BNav } from '@compromis/blobby'
       );
       z-index: -1;
     }
+  }
+
+  .hero {
+    margin: 4vh 0;
+
+    h1 {
+      font-weight: 500;
+    }
+
+    .text-7xl {
+      font-size: 7rem;
+    }
+  }
+
+  .section {
+    color: $white;
+    max-width: 950px;
   }
 </style>
