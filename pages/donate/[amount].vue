@@ -1,14 +1,28 @@
 <script setup>
-import { reactive } from 'vue'
+import { reactive, onMounted } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import BField from '@compromis/blobby/components/inputs/BField.vue'
 import BInput from '@compromis/blobby/components/inputs/BInput.vue'
 import BInputGroup from '@compromis/blobby/components/inputs/BInputGroup.vue'
 
+// Amount to donate
+const route = useRoute()
+const router = useRouter()
+const amount = route.params.amount
+
+// Personal data
 const form = reactive({
   first_name: '',
   last_name: '',
   email: '',
   DNI: ''
+})
+
+// Redirect back if invalid amount
+onMounted(() => {
+  if (isNaN(amount) || amount > 10000) {
+    router.push('/')
+  }
 })
 </script>
 
@@ -16,8 +30,8 @@ const form = reactive({
   <div>
     <section class="section mb-5">
       <b-input-group title="Contribució">
-          <b-field span="2" label="Quantitat" label-for="Noething">
-            {{ $route.params.amount }}€
+          <b-field span="2" label="Quantitat">
+            <span class="text-xl">{{ amount }}€</span>
           </b-field>
       </b-input-group>
     </section>

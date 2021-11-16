@@ -1,5 +1,31 @@
 <script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import BCard from '@compromis/blobby/components/card/BCard.vue'
+
+const router = useRouter()
+const otherAmount = ref('')
+const otherAmountError = ref('')
+const otherAmountMax = 10000
+const donateOtherAmount = () => {
+  // Check if otherAmount is an integer
+  if (!Number.isInteger(otherAmount.value)) {
+    otherAmountError.value = 'La qüantitat ha de ser un nombre enter'
+    return
+  }
+
+  if (otherAmount.value > otherAmountMax) {
+    otherAmountError.value = `La qüantitat màxima per a donacions és ${otherAmountMax}€`
+    return
+  }
+
+  router.push({
+    name: 'donate-amount',
+    params: {
+      amount: otherAmount.value
+    }
+  })
+}
 </script>
 
 <template>
@@ -31,8 +57,25 @@ import BCard from '@compromis/blobby/components/card/BCard.vue'
         <span class="donate-text text-muted text-2xl">20 pancartes de carrer</span>
         <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/285/dog-face_1f436.png" class="donate-emoji" alt="">
       </b-card>
-      <b-card padded>
-        Other
+      <b-card padded content-class="d-flex h-100">
+        <form class="d-flex flex-column h-100 w-100" @submit.prevent="donateOtherAmount">
+          <div class="donate-amount text-4xl">
+            <input type="number" name="other_amount" min="0" :max="otherAmountMax" placeholder="200" v-model="otherAmount" class="other-amount-input" />€
+          </div>
+          <div v-if="otherAmountError" class="text-red text-sm">
+            {{ otherAmountError }}
+          </div>
+          <div class="donate-text text-muted text-2xl">
+            <transition name="fade" mode="out-in">
+              <span v-if="!otherAmount">
+                Altra quantitat
+              </span>
+              <div v-else class="card-button-wrapper">
+                <button type="submit" class="card-button">Continua &gt;</button>
+              </div>
+            </transition>
+          </div>
+        </form>
       </b-card>
     </div>
   </section>
@@ -79,5 +122,58 @@ import BCard from '@compromis/blobby/components/card/BCard.vue'
     transform: scale(var(--scale, 0)) rotate(var(--rotate, 2deg));
     z-index: 10;
     transition: .2s ease;
+  }
+
+  .other-amount-input {
+    font-size: inherit;
+    text-align: right;
+    border: 0;
+    border-bottom: 2px var(--gray-200) solid;
+    width: 3em;
+    padding: 0;
+    line-height: 1;
+    transition: .2s ease;
+
+    &::placeholder {
+      color: var(--gray-500);
+    }
+
+    &:hover {
+      border-bottom-color: var(--gray-300);
+    }
+
+    &:focus {
+      outline: 0;
+      border-bottom-color: var(--gray-500);
+    }
+  }
+
+  .card-button {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--text-muted);
+    display: block;
+    text-align: right;
+    line-height: 1;
+    width: 100%;
+    padding: var(--card-padding);
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-top: 1px var(--gray-200) solid;
+    transition: .2s ease;
+
+    &:hover {
+      color: var(--text-color);
+      background: var(--gray-100);
+    }
+
+    &:focus {
+      outline: 2px var(--black) solid;
+    }
+
+    &-wrapper {
+      margin: calc(var(--card-padding) * -1);
+    }
   }
 </style>
