@@ -4,9 +4,10 @@ import { useRouter } from 'vue-router'
 import BCard from '@compromis/blobby/components/card/BCard.vue'
 
 const router = useRouter()
+const amountMax = 10000
+const amountMin = 5
 const otherAmount = ref('')
 const otherAmountError = ref('')
-const otherAmountMax = 10000
 const donateOtherAmount = () => {
   // Check if otherAmount is an integer
   if (!Number.isInteger(otherAmount.value)) {
@@ -14,8 +15,15 @@ const donateOtherAmount = () => {
     return
   }
 
-  if (otherAmount.value > otherAmountMax) {
-    otherAmountError.value = `La qüantitat màxima per a donacions és ${otherAmountMax}€`
+  // Check amount does not exceed max
+  if (otherAmount.value > amountMax) {
+    otherAmountError.value = `La qüantitat màxima per a donacions és ${amountMax}€`
+    return
+  }
+
+  // Check amount is more then min
+  if (otherAmount.value < amountMin) {
+    otherAmountError.value = `La donació mínima és ${amountMin}€`
     return
   }
 
@@ -60,7 +68,15 @@ const donateOtherAmount = () => {
       <b-card padded content-class="d-flex h-100">
         <form class="d-flex flex-column h-100 w-100" @submit.prevent="donateOtherAmount">
           <div class="donate-amount text-4xl">
-            <input type="number" name="other_amount" min="0" :max="otherAmountMax" placeholder="200" v-model="otherAmount" class="other-amount-input" />€
+            <input
+              type="number"
+              name="other_amount"
+              :min="amountMin"
+              :max="amountMax"
+              placeholder="200"
+              v-model="otherAmount"
+              class="other-amount-input"
+            />€
           </div>
           <div v-if="otherAmountError" class="text-red text-sm">
             {{ otherAmountError }}
