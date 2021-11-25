@@ -1,11 +1,11 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useAmount } from '@/composables/amount.js'
 import BCard from '@compromis/blobby/components/card/BCard.vue'
 
 const router = useRouter()
-const amountMax = 10000
-const amountMin = 5
+const { max: amountMax, min: amountMin } = useAmount().value
 const otherAmount = ref('')
 const otherAmountError = ref('')
 const donateOtherAmount = () => {
@@ -87,7 +87,7 @@ const donateOtherAmount = () => {
                 Altra quantitat
               </span>
               <div v-else class="card-button-wrapper">
-                <button type="submit" class="card-button">Continua &gt;</button>
+                <button type="submit" class="card-button">Continua -></button>
               </div>
             </transition>
           </div>

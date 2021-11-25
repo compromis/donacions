@@ -1,6 +1,9 @@
 <script setup>
-import { reactive, onMounted } from 'vue'
+import { reactive, watch, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useFormData } from '~/composables/form-data.js'
+import { useAmount } from '~/composables/amount.js'
+
 import BField from '@compromis/blobby/components/inputs/BField.vue'
 import BInput from '@compromis/blobby/components/inputs/BInput.vue'
 import BSelect from '@compromis/blobby/components/inputs/BSelect.vue'
@@ -8,39 +11,37 @@ import BInputGroup from '@compromis/blobby/components/inputs/BInputGroup.vue'
 import BRadioGroup from '@compromis/blobby/components/inputs/BRadioGroup.vue'
 import BRadio from '@compromis/blobby/components/inputs/BRadio.vue'
 import BButton from '@compromis/blobby/components/button/BButton.vue'
-import PencilIcon from '../../components/icons/PencilIcon.vue'
-
-const amountMax = 10000
-const amountMin = 5
+import PencilIcon from '@/components/icons/PencilIcon.vue'
 
 // Amount to donate
+const { max: amountMax, min: amountMin } = useAmount().value
 const route = useRoute()
 const router = useRouter()
 const amount = route.params.amount
 
 // Personal data
-const form = reactive({
-  fund: 1,
-  method: 'paypal',
-  first_name: '',
-  last_name: '',
-  email: '',
-  DNI: '',
-  address: '',
-  municipality: '',
-  postal_code: ''
-})
+const formData = useFormData()
+const form = reactive(formData.value)
+watch(() => form, (form) => { formData.value = form }, { deep: true })
 
 // Redirect back if invalid amount
 onMounted(() => {
   if (isNaN(amount) || amount > amountMax || amount < amountMin) {
     router.push('/')
   }
+
+  form.amount = amount
 })
+
+// Submit form
+const submitDonation = () => {
+  formData.value = form
+  router.push({ name: 'receipt' })
+}
 </script>
 
 <template>
-  <div>
+  <form @submit.prevent="submitDonation">
     <section class="section mb-5">
       <b-input-group title="Contribució">
           <b-field span="2" label="Quantitat">
@@ -141,10 +142,10 @@ onMounted(() => {
         </b-radio>
       </b-radio-group>
     </section>
-    <b-button variant="inverted" size="xl" class="mt-5 text-bold" has-shadow focus-dark>
+    <b-button type="submit" variant="inverted" size="xl" class="text-bold mt-5" has-shadow focus-dark>
       {{ form.method == 'paypal' ? 'Pagar amb PayPal' : 'Següent pas' }} &gt;
     </b-button>
-  </div>
+  </form>
 </template>
 
 <style lang="scss" scoped>
