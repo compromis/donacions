@@ -10,9 +10,16 @@ const form = useFormData()
 <template>
   <section class="section receipt">
     <b-card size="lg" class="thanks-card" padded>
-      <h3 class="mb-5 text-6xl lh-1 text-regular">Gràcies, <br>{{ form.first_name }}</h3>
-      <p v-if="form.method === 'paypal'" class="text-xl text-muted mb-0">Hem rebut la teua donació, moltes gràcies pel teu compromís!</p>
-      <p v-if="form.method === 'wire'" class="text-xl text-muted mb-0">Per a completar la teua donació, nomñés has de fer una transferència al següent número de compte. Gràcies pel teu compromís.</p>
+      <h3 class="mb-5 text-6xl lh-1 text-regular">
+        <template v-if="form.first_name">Gràcies, <br>{{ form.first_name }}</template>
+        <template v-else>Gràcies!</template>
+      </h3>
+      <p v-if="form.method === 'paypal'" class="text-xl text-muted mb-0">
+        Hem rebut la teua donació, moltes gràcies pel teu compromís!
+      </p>
+      <p v-if="form.method === 'wire'" class="text-xl text-muted mb-0">
+        Per a completar la teua donació, només has de fer una transferència al següent número de compte. Gràcies pel teu compromís!
+      </p>
       <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/320/apple/285/clapping-hands_1f44f.png" class="receipt-emoji" alt="">
     </b-card>
     <template v-if="form.method === 'wire'">

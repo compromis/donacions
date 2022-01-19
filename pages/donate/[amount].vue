@@ -1,4 +1,5 @@
 <script setup>
+import qs from 'qs'
 import axios from 'axios'
 import { reactive, watch, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
@@ -32,7 +33,7 @@ const form = reactive(formData.value)
 watch(() => form, (form) => { formData.value = form }, { deep: true })
 
 // Redirect back if invalid amount
-onMounted(async () => {
+onMounted(() => {
   if (isNaN(amount) || amount > amountMax || amount < amountMin) {
     router.push('/')
   }
@@ -40,12 +41,21 @@ onMounted(async () => {
   form.amount = amount
 })
 
+// Errors
+const errors = ref([])
+
 // Submit form
 const submitDonation = async () => {
   const redirectTo = { paypal: 'paypal', wire: 'receipt' }
-  await axios.post(API_BASE  + 'submit', form)
+  const { data } = await axios.post(API_BASE + 'submit', qs.stringify(form), {
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+  })
   formData.value = form
-  router.push({ name: redirectTo[form.method] })
+  if (data.status === 'ok') {
+    router.push({ name: redirectTo[form.method] })
+  } else {
+    errors.value = data.errors
+  }
 }
 </script>
 
@@ -75,6 +85,7 @@ const submitDonation = async () => {
             label="Nom"
             name="first_name"
             v-model="form.first_name"
+            :error="errors.first_name"
             :span="['span-2', 'sm:span-4']"
             autocomplete="given-name"
             required
@@ -84,6 +95,7 @@ const submitDonation = async () => {
             label="Cognoms"
             name="last_name"
             v-model="form.last_name"
+            :error="errors.last_name"
             :span="['span-2', 'sm:span-4']"
             autocomplete="family-name"
             required
@@ -94,6 +106,7 @@ const submitDonation = async () => {
             label="E-mail"
             name="email"
             v-model="form.email"
+            :error="errors.email"
             :span="['span-2', 'sm:span-4']"
             autocomplete="email"
             inputmode="email"
@@ -104,6 +117,7 @@ const submitDonation = async () => {
             label="DNI/NIE"
             name="DNI"
             v-model="form.DNI"
+            :error="errors.DNI"
             :span="['span-2', 'sm:span-4']"
             required
           />
@@ -112,6 +126,7 @@ const submitDonation = async () => {
             label="Adreça"
             name="address"
             v-model="form.address"
+            :error="errors.address"
             :span="['span-2', 'sm:span-4']"
             autocomplete="street-address"
           />
@@ -120,6 +135,7 @@ const submitDonation = async () => {
             label="Municipi"
             name="municipality"
             v-model="form.municipality"
+            :error="errors.municipality"
             :span="['span-1', 'sm:span-2']"
             autocomplete="address-level2"
             required
@@ -129,6 +145,7 @@ const submitDonation = async () => {
             label="Codi postal"
             name="postal_code"
             v-model="form.postal_code"
+            :error="errors.postal_code"
             :span="['span-1', 'sm:span-2']"
             pattern="\d*"
             inputmode="decimal"

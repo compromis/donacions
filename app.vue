@@ -1,6 +1,7 @@
 <script setup>
 import BNav from '@compromis/blobby/components/nav/BNav.vue'
 import BNavItem from '@compromis/blobby/components/nav/BNavItem.vue'
+import BFooter from '@compromis/blobby/components/footer/BFooter.vue'
 </script>
 
 <template>
@@ -23,6 +24,7 @@ import BNavItem from '@compromis/blobby/components/nav/BNavItem.vue'
 
         <NuxtPage />
       </main>
+      <b-footer class="my-5" />
     </div>
   </div>
 </template>
