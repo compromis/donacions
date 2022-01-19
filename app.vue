@@ -18,7 +18,7 @@ import BNavItem from '@compromis/blobby/components/nav/BNavItem.vue'
     <div class="container">
       <main class="index">
         <header class="hero">
-          <h1 class="text-7xl text-white">Col·labora</h1>
+          <h1 class="text-white">Col·labora</h1>
         </header>
 
         <NuxtPage />
@@ -61,6 +61,7 @@ import BNavItem from '@compromis/blobby/components/nav/BNavItem.vue'
 
     h1 {
       font-weight: 500;
+      font-size: clamp(4.5rem, 5vw, 7rem);
     }
 
     .text-7xl {

@@ -11,6 +11,7 @@
     "sass-loader": "10"
   },
   "dependencies": {
-    "@compromis/blobby": "../blobby"
+    "@compromis/blobby": "../blobby",
+    "axios": "^0.24.0"
   }
 }

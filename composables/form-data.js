@@ -1,6 +1,6 @@
 export const useFormData = () => useState('formData', () => ({
   amount: 0,
-  fund: 1,
+  fund: '1',
   method: 'paypal',
   first_name: '',
   last_name: '',

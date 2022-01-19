@@ -263,7 +263,15 @@
     mime "^2.5.2"
 
 "@compromis/blobby@../blobby":
-  version "1.0.3"
+  version "1.0.11"
+  dependencies:
+    bootstrap "^5.1.3"
+    vue "^3.0.0"
+
+"@compromis/blobby@1.0.11":
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/@compromis/blobby/-/blobby-1.0.11.tgz#1ae4f39a8a775423efe46e6622d4ba83854c7e84"
+  integrity sha512-SBywv1MBT2XM17B2XeoknjKJwoTAZocSdOIVu5Ukdjm2ABgqNJ9xxhEPkJvq19Y1jpQV9KeT2+PL8bVqY1CTKA==
   dependencies:
     bootstrap "^5.1.3"
     vue "^3.0.0"
@@ -1242,6 +1250,13 @@ available-typed-arrays@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz#92f95616501069d07d10edb2fc37d3e1c65123b7"
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
+
+axios@^0.24.0:
+  version "0.24.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.24.0.tgz#804e6fa1e4b9c5288501dd9dff56a7a0940d20d6"
+  integrity sha512-Q6cWsys88HoPgAaFAVUb0WpPk0O8iTeisR9IMqy9G8AbO4NlpVknrnQS03zzF9PGAWgO3cgletO3VjV/P7VztA==
+  dependencies:
+    follow-redirects "^1.14.4"
 
 babel-loader@^8.2.3:
   version "8.2.3"
@@ -2375,6 +2390,11 @@ follow-redirects@^1.0.0:
   version "1.14.5"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.5.tgz#f09a5848981d3c772b5392309778523f8d85c381"
   integrity sha512-wtphSXy7d4/OR+MvIFbCVBDzZ5520qV8XfPklSN5QtxuMUJZ+b0Wnst1e1lCDocfzuCkHqj8k0FpZqO+UIaKNA==
+
+follow-redirects@^1.14.4:
+  version "1.14.6"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.6.tgz#8cfb281bbc035b3c067d6cd975b0f6ade6e855cd"
+  integrity sha512-fhUl5EwSJbbl8AR+uYL2KQDxLkdSjZGR36xy46AO7cOMTrCMON6Sa28FmAnC2tRTDbd/Uuzz3aJBv7EBN7JH8A==
 
 foreach@^2.0.5:
   version "2.0.5"

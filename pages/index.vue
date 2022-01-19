@@ -99,6 +99,9 @@ const donateOtherAmount = () => {
 
 <style lang="scss" scoped>
   @import '@compromis/blobby/scss/variables';
+  @import 'bootstrap/scss/functions';
+  @import 'bootstrap/scss/variables';
+  @import 'bootstrap/scss/mixins';
 
   .donate-grid {
     display: grid;
@@ -190,6 +193,12 @@ const donateOtherAmount = () => {
 
     &-wrapper {
       margin: calc(var(--card-padding) * -1);
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    .donate-card {
+      aspect-ratio: 1.75 / 1;
     }
   }
 </style>
