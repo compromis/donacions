@@ -1,0 +1,41 @@
+{
+  "app": {
+    "hero": "Col·labora",
+    "title": "Donacions"
+  },
+  "index": {
+    "title": "Quant vols aportar hui?",
+    "donate_5": "",
+    "donate_10": "",
+    "donate_30": "",
+    "donate_50": "",
+    "donate_100": "",
+    "donate_other": "Altra quantitat",
+    "continue": "Continua"
+  },
+  "form": {
+    "amount": "Quantitat",
+    "edit": "Edita quantitat",
+    "fund": "Fons",
+    "personal_data": "Dades personals",
+    "first_name": "Nom",
+    "last_name": "Cognoms",
+    "email": "E-mail",
+    "ID": "DNI/NIE",
+    "address": "Adreça",
+    "postal_code": "Codi postal",
+    "municipality": "Municipi",
+    "payment": "Pagament",
+    "wire": "Transferència bancària",
+    "button_paypal": "Pagar amb PayPal",
+    "button_wire": "Següent pas"
+  },
+  "receipt": {
+    "thanks_with_name": "Gràcies, ",
+    "thanks_alone": "Gràcies!",
+    "thanks_paypal": "Hem rebut la teua donació, moltes gràcies pel teu compromís!",
+    "thanks_wire": "Per a completar la teua donació, només has de fer una transferència al següent número de compte. Gràcies pel teu compromís!",
+    "subject": "Concepte",
+    "back": "Torna a compromis.net"
+  }
+}

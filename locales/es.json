@@ -1,0 +1,41 @@
+{
+  "app": {
+    "hero": "Colabora",
+    "title": "Donaciones"
+  },
+  "index": {
+    "title": "¿Cuántoe quieres aportar hoy?",
+    "donate_5": "",
+    "donate_10": "",
+    "donate_30": "",
+    "donate_50": "",
+    "donate_100": "",
+    "donate_other": "Otra cantidad",
+    "continue": "Continúa"
+  },
+  "form": {
+    "amount": "Cantidad",
+    "edit": "Editar cantidad",
+    "fund": "Fondo",
+    "personal_data": "Datos personales",
+    "first_name": "Nombre",
+    "last_name": "Apellidos",
+    "email": "E-mail",
+    "ID": "DNI/NIE",
+    "address": "Dirección",
+    "postal_code": "Código postal",
+    "municipality": "Municipio",
+    "payment": "Pago",
+    "wire": "Transferencia bancaria",
+    "button_paypal": "Pagar con PayPal",
+    "button_wire": "Siguiente paso"
+  },
+  "receipt": {
+    "thanks_with_name": "¡Gracias, ",
+    "thanks_alone": "¡Gracias!",
+    "thanks_paypal": "¡Hemos recibido tu donación, muchas gracias por tu compromiso!",
+    "thanks_wire": "Para completar tu donación, solo queda que hagas una transferencia al siguiente número de cuenta. ¡Gracias por tu compromiso!",
+    "subject": "Concepto",
+    "back": "Volver a compromis.net"
+  }
+}

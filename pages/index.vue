@@ -38,31 +38,31 @@ const donateOtherAmount = () => {
 
 <template>
   <section class="section">
-    <h2 class="mb-4">Quant vols aportar hui?</h2>
+    <h2 class="mb-4">{{ $t('index.title') }}</h2>
     <div class="donate-grid">
       <b-card to="/donate/5" href="/donate/5" padded rises class="donate-card" content-class="d-flex flex-column h-100">
         <span class="donate-amount text-4xl">5€</span>
-        <span class="donate-text text-muted text-2xl">Ajudes a fer 30 cartells</span>
+        <span class="donate-text text-muted text-2xl">{{ $t('index.donate_5') }}</span>
         <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/285/envelope_2709-fe0f.png" class="donate-emoji" alt="">
       </b-card>
       <b-card to="/donate/10" href="/donate/10" padded rises class="donate-card" content-class="d-flex flex-column h-100">
         <span class="donate-amount text-4xl">10€</span>
-        <span class="donate-text text-muted text-2xl">Ajudes a enviar 50 cartes amb paperetes</span>
+        <span class="donate-text text-muted text-2xl">{{ $t('index.donate_10') }}</span>
         <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/285/microphone_1f3a4.png" class="donate-emoji" alt="">
       </b-card>
       <b-card to="/donate/30" href="/donate/30" padded rises class="donate-card" content-class="d-flex flex-column h-100">
         <span class="donate-amount text-4xl">30€</span>
-        <span class="donate-text text-muted text-2xl">100 cartells electorals</span>
+        <span class="donate-text text-muted text-2xl">{{ $t('index.donate_30') }}</span>
         <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/285/speak-no-evil-monkey_1f64a.png" class="donate-emoji" alt="">
       </b-card>
       <b-card to="/donate/50" href="/donate/50" padded rises class="donate-card" content-class="d-flex flex-column h-100">
         <span class="donate-amount text-4xl">50€</span>
-        <span class="donate-text text-muted text-2xl">1 estand informatiu</span>
+        <span class="donate-text text-muted text-2xl">{{ $t('index.donate_50') }}</span>
         <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/285/speaking-head_1f5e3-fe0f.png" class="donate-emoji" alt="">
       </b-card>
       <b-card to="/donate/100" href="/donate/100" padded rises class="donate-card" content-class="d-flex flex-column h-100">
         <span class="donate-amount text-4xl">100€</span>
-        <span class="donate-text text-muted text-2xl">20 pancartes de carrer</span>
+        <span class="donate-text text-muted text-2xl">{{ $t('index.donate_100') }}</span>
         <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/285/dog-face_1f436.png" class="donate-emoji" alt="">
       </b-card>
       <b-card padded content-class="d-flex h-100">
@@ -84,10 +84,10 @@ const donateOtherAmount = () => {
           <div class="donate-text text-muted text-2xl">
             <transition name="fade" mode="out-in">
               <span v-if="!otherAmount">
-                Altra quantitat
+                {{ $t('index.donate_other') }}
               </span>
               <div v-else class="card-button-wrapper">
-                <button type="submit" class="card-button">Continua -></button>
+                <button type="submit" class="card-button">{{ $t('index.continue') }} -&gt;</button>
               </div>
             </transition>
           </div>

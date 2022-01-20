@@ -4,5 +4,14 @@ import { defineNuxtConfig } from 'nuxt3'
 export default defineNuxtConfig({
   css: [
     '@compromis/blobby/scss/blobby.scss'
-  ]
+  ],
+
+  buildModules: ['@intlify/nuxt3'],
+
+  intlify: {
+    localeDir: 'locales',
+    vueI18n: {
+      locale: 'ca'
+    }
+  }
 })

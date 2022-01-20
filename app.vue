@@ -2,29 +2,31 @@
 import BNav from '@compromis/blobby/components/nav/BNav.vue'
 import BNavItem from '@compromis/blobby/components/nav/BNavItem.vue'
 import BFooter from '@compromis/blobby/components/footer/BFooter.vue'
+import BSelect from '@compromis/blobby/components/inputs/BSelect.vue'
 </script>
 
 <template>
   <div class="background">
     <b-nav>
       <template #logo-append>
-        <nuxt-link to="/">Donacions</nuxt-link>
+        <nuxt-link to="/">{{ $t('app.title') }}</nuxt-link>
       </template>
 
-      <b-nav-item to="/">
-        Castellano
-      </b-nav-item>
+      <b-select class="locale-select" no-label v-model="$i18n.locale">
+        <option value="ca">Valencià</option>
+        <option value="es">Castellano</option>
+      </b-select>
     </b-nav>
 
     <div class="container">
       <main class="index">
         <header class="hero">
-          <h1 class="text-white">Col·labora</h1>
+          <h1 class="text-white">{{ $t('app.hero') }}</h1>
         </header>
 
         <NuxtPage />
       </main>
-      <b-footer class="my-5" />
+      <b-footer variant="light" class="footer text-white" />
     </div>
   </div>
 </template>
@@ -74,5 +76,12 @@ import BFooter from '@compromis/blobby/components/footer/BFooter.vue'
   .section {
     color: $white;
     max-width: 950px;
+  }
+
+  .locale-select.input {
+    border: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin: -.5rem 0;
   }
 </style>
