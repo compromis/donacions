@@ -62,7 +62,7 @@ const submitDonation = async () => {
 <template>
   <form @submit.prevent="submitDonation">
     <section class="section mb-5">
-      <b-input-group title="Contribució">
+      <b-input-group :title="$t('form.contribution')">
           <b-field :span="['span-2', 'sm:span-4']" :label="$t('form.amount')">
             <div class="d-flex">
               <span class="text-xl">{{ amount }}€</span>
