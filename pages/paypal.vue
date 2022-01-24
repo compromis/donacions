@@ -10,7 +10,7 @@
 </script>
 
 <template>
-  <div class="text-center text-white">
+  <main class="text-center text-white">
     <h1 class="text-3xl text-center">Redirigint a PayPal...</h1>
     <p class="mt-4 text-xl">Si no et redirigeix automàticament, fes clic al següent botó:</p>
     <form action="https://www.paypal.com/cgi-bin/webscr" id="PayPalPay" method="post">
@@ -23,5 +23,5 @@
       <input type="hidden" name="hosted_button_id" value="WM4BS57LUNX6L">
       <input type="submit" class="button button-inverted button-solid button-lg mt-4" name="submit" ref="PayPalButton" id="PayPalButton" value="Pagar amb Paypal" />
     </form>
-  </div>
+  </main>
 </template>

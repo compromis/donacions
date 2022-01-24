@@ -60,115 +60,120 @@ const submitDonation = async () => {
 </script>
 
 <template>
-  <form @submit.prevent="submitDonation">
-    <section class="section mb-5">
-      <b-input-group :title="$t('form.contribution')">
-          <b-field :span="['span-2', 'sm:span-4']" :label="$t('form.amount')">
-            <div class="d-flex">
-              <span class="text-xl">{{ amount }}€</span>
-              <nuxt-link to="/" class="edit-button link-muted-to-black" :title="$t('form.edit')">
-                <pencil-icon />
-              </nuxt-link>
-            </div>
-          </b-field>
-          <b-select name="fund" :label="$t('form.fund')" variant="float" :span="['span-2', 'sm:span-4']" v-model="form.fund">
-            <optgroup v-for="fundGroup in funds" :key="fundGroup.name" :label="fundGroup.name">
-              <option v-for="fund in fundGroup.funds" :key="fund.id" :value="fund.id">{{ fund.name }}</option>
-            </optgroup>
-          </b-select>
-      </b-input-group>
-    </section>
-    <section class="section mb-5">
-      <b-input-group :title="$t('form.personal_data')">
-          <b-input
-            variant="float"
-            :label="$t('form.first_name')"
-            name="first_name"
-            v-model="form.first_name"
-            :error="errors.first_name"
-            :span="['span-2', 'sm:span-4']"
-            autocomplete="given-name"
-            required
-          />
-          <b-input
-            variant="float"
-            label="Cognoms"
-            name="last_name"
-            v-model="form.last_name"
-            :error="errors.last_name"
-            :span="['span-2', 'sm:span-4']"
-            autocomplete="family-name"
-            required
-          />
-          <b-input
-            variant="float"
-            type="email" 
-            :label="$t('form.email')"
-            name="email"
-            v-model="form.email"
-            :error="errors.email"
-            :span="['span-2', 'sm:span-4']"
-            autocomplete="email"
-            inputmode="email"
-            required
-          />
-          <b-input
-            variant="float" 
-            :label="$t('form.ID')"
-            name="DNI"
-            v-model="form.DNI"
-            :error="errors.DNI"
-            :span="['span-2', 'sm:span-4']"
-            required
-          />
-          <b-input
-            variant="float" 
-            :label="$t('form.address')"
-            name="address"
-            v-model="form.address"
-            :error="errors.address"
-            :span="['span-2', 'sm:span-4']"
-            autocomplete="street-address"
-          />
-          <b-input
-            variant="float" 
-            :label="$t('form.municipality')"
-            name="municipality"
-            v-model="form.municipality"
-            :error="errors.municipality"
-            :span="['span-1', 'sm:span-2']"
-            autocomplete="address-level2"
-            required
-          />
-          <b-input
-            variant="float" 
-            :label="$t('form.postal_code')"
-            name="postal_code"
-            v-model="form.postal_code"
-            :error="errors.postal_code"
-            :span="['span-1', 'sm:span-2']"
-            pattern="\d*"
-            inputmode="decimal"
-            autocomplete="postal-code"
-            required
-          />
+  <main>
+    <header class="hero">
+      <h1 class="text-white">{{ $t('app.hero') }}</h1>
+    </header>
+    <form @submit.prevent="submitDonation">
+      <section class="section mb-5">
+        <b-input-group :title="$t('form.contribution')">
+            <b-field :span="['span-2', 'sm:span-4']" :label="$t('form.amount')">
+              <div class="d-flex">
+                <span class="text-xl">{{ amount }}€</span>
+                <nuxt-link to="/" class="edit-button link-muted-to-black" :title="$t('form.edit')">
+                  <pencil-icon />
+                </nuxt-link>
+              </div>
+            </b-field>
+            <b-select name="fund" :label="$t('form.fund')" variant="float" :span="['span-2', 'sm:span-4']" v-model="form.fund">
+              <optgroup v-for="fundGroup in funds" :key="fundGroup.name" :label="fundGroup.name">
+                <option v-for="fund in fundGroup.funds" :key="fund.id" :value="fund.id">{{ fund.name }}</option>
+              </optgroup>
+            </b-select>
         </b-input-group>
-    </section>
-    <section class="section">
-      <b-radio-group :title="$t('form.payment')">
-        <b-radio name="payment_method" value="paypal" focus-dark :card="{ size: 'sm' }" v-model="form.method" class="payment-method paypal">
-          <img src="~assets/images/paypal.png" alt="PayPal, Visa, MasterCard" />
-        </b-radio>
-        <b-radio name="payment_method" value="wire" focus-dark :card="{ size: 'sm' }" v-model="form.method" class="payment-method wire text-lg">
-          {{ $t('form.wire') }}
-        </b-radio>
-      </b-radio-group>
-    </section>
+      </section>
+      <section class="section mb-5">
+        <b-input-group :title="$t('form.personal_data')">
+            <b-input
+              variant="float"
+              :label="$t('form.first_name')"
+              name="first_name"
+              v-model="form.first_name"
+              :error="errors.first_name"
+              :span="['span-2', 'sm:span-4']"
+              autocomplete="given-name"
+              required
+            />
+            <b-input
+              variant="float"
+              label="Cognoms"
+              name="last_name"
+              v-model="form.last_name"
+              :error="errors.last_name"
+              :span="['span-2', 'sm:span-4']"
+              autocomplete="family-name"
+              required
+            />
+            <b-input
+              variant="float"
+              type="email" 
+              :label="$t('form.email')"
+              name="email"
+              v-model="form.email"
+              :error="errors.email"
+              :span="['span-2', 'sm:span-4']"
+              autocomplete="email"
+              inputmode="email"
+              required
+            />
+            <b-input
+              variant="float" 
+              :label="$t('form.ID')"
+              name="DNI"
+              v-model="form.DNI"
+              :error="errors.DNI"
+              :span="['span-2', 'sm:span-4']"
+              required
+            />
+            <b-input
+              variant="float" 
+              :label="$t('form.address')"
+              name="address"
+              v-model="form.address"
+              :error="errors.address"
+              :span="['span-2', 'sm:span-4']"
+              autocomplete="street-address"
+            />
+            <b-input
+              variant="float" 
+              :label="$t('form.municipality')"
+              name="municipality"
+              v-model="form.municipality"
+              :error="errors.municipality"
+              :span="['span-1', 'sm:span-2']"
+              autocomplete="address-level2"
+              required
+            />
+            <b-input
+              variant="float" 
+              :label="$t('form.postal_code')"
+              name="postal_code"
+              v-model="form.postal_code"
+              :error="errors.postal_code"
+              :span="['span-1', 'sm:span-2']"
+              pattern="\d*"
+              inputmode="decimal"
+              autocomplete="postal-code"
+              required
+            />
+          </b-input-group>
+      </section>
+      <section class="section">
+        <b-radio-group :title="$t('form.payment')">
+          <b-radio name="payment_method" value="paypal" focus-dark :card="{ size: 'sm' }" v-model="form.method" class="payment-method paypal">
+            <img src="~assets/images/paypal.png" alt="PayPal, Visa, MasterCard" />
+          </b-radio>
+          <b-radio name="payment_method" value="wire" focus-dark :card="{ size: 'sm' }" v-model="form.method" class="payment-method wire text-lg">
+            {{ $t('form.wire') }}
+          </b-radio>
+        </b-radio-group>
+      </section>
 
-    <b-button type="submit" variant="inverted" size="xl" class="text-bold mt-5" has-shadow focus-dark>
-      {{ form.method == 'paypal' ? $t('form.button_paypal') : $t('form.button_wire') }} &gt;
-    </b-button>
-  </form>
+      <b-button type="submit" variant="inverted" size="xl" class="text-bold mt-5" has-shadow focus-dark>
+        {{ form.method == 'paypal' ? $t('form.button_paypal') : $t('form.button_wire') }} &gt;
+      </b-button>
+    </form>
+  </main>
 </template>
 
 <style lang="scss" scoped>

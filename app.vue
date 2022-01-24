@@ -25,13 +25,7 @@ import BSelect from '@compromis/blobby/components/inputs/BSelect.vue'
     </b-nav>
 
     <div class="container">
-      <main class="index">
-        <header class="hero">
-          <h1 class="text-white">{{ $t('app.hero') }}</h1>
-        </header>
-
-        <NuxtPage />
-      </main>
+      <NuxtPage />
       <b-footer variant="light" class="footer text-white" />
     </div>
   </div>
@@ -48,6 +42,7 @@ import BSelect from '@compromis/blobby/components/inputs/BSelect.vue'
     background-repeat: no-repeat;
     min-height: 100vh;
     z-index: 0;
+    overflow: hidden;
 
     &::before {
       content: '';
