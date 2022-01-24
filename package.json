@@ -12,7 +12,7 @@
     "sass-loader": "10"
   },
   "dependencies": {
-    "@compromis/blobby": "../blobby",
+    "@compromis/blobby": "1.1.0",
     "axios": "^0.24.0",
     "qs": "^6.10.3"
   }
