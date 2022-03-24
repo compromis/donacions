@@ -12,27 +12,27 @@ const form = useFormData()
     <b-card size="lg" class="thanks-card" padded>
       <h3 class="mb-5 text-6xl sm:text-5xl lh-1 text-regular">
         <template v-if="form.first_name">
-          {{ $t('receipt.thanks_with_name') }}<br>{{ form.first_name }}
+          Gràcies, <br>{{ form.first_name }}
         </template>
-        <template v-else>{{ $t('receipt.thanks_alone') }}</template>
+        <template v-else>Gràcies!</template>
       </h3>
       <p v-if="form.method === 'paypal'" class="receipt-text text-xl text-muted mb-0">
-        {{ $t('receipt.thanks_paypal') }}
+        Hem rebut la teua donació, moltes gràcies pel teu compromís!
       </p>
       <p v-if="form.method === 'wire'" class="receipt-text text-xl text-muted mb-0">
-        {{ $t('receipt.thanks_wire') }}
+        Per a completar la teua donació, només has de fer una transferència al següent número de compte. Gràcies pel teu compromís!
       </p>
       <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/320/apple/285/clapping-hands_1f44f.png" class="receipt-emoji" alt="">
     </b-card>
     <template v-if="form.method === 'wire'">
-      <h4 class="mt-5 mb-3 text-2xl text-bold">{{ $t('form.wire') }}</h4>
+      <h4 class="mt-5 mb-3 text-2xl text-bold">Transferència bancària</h4>
       <b-card content-class="transfer-info">
         <b-card-section border-bottom border-right class="span-1 sm:span-2">
-          <div class="text-muted">{{ $t('form.amount') }}</div>
+          <div class="text-muted">Quantitat</div>
           <div class="text-2xl">{{ form.amount }}€</div>
         </b-card-section>
          <b-card-section border-bottom class="span-1 sm:span-2">
-          <div class="text-muted">{{ $t('receipt.subject') }}</div>
+          <div class="text-muted">Concepte</div>
           <div class="text-2xl">{{ form.DNI }} Donació</div>
         </b-card-section>
         <b-card-section class="span-2">
@@ -42,7 +42,7 @@ const form = useFormData()
       </b-card>
     </template>
     <b-button href="https://compromis.net" size="lg" variant="inverted" class="mt-5" has-shadow>
-      {{ $t('receipt.back') }} -&gt;
+      Torna a compromis.net -&gt;
     </b-button>
   </main>
 </template>

@@ -39,35 +39,35 @@ const donateOtherAmount = () => {
 <template>
   <main>
     <header class="hero">
-      <h1 class="text-white">{{ $t('app.hero') }}</h1>
+      <h1 class="text-white" ref="title">Col·labora</h1>
     </header>
     <section class="section">
-      <h2 class="mb-4">{{ $t('index.title') }}</h2>
+      <h2 class="mb-4">Quant vols aportar hui?</h2>
       <div class="donate-grid">
         <b-card to="/donate/5" href="/donate/5" padded rises class="donate-card" content-class="d-flex flex-column h-100">
           <span class="donate-amount text-4xl">5€</span>
-          <span class="donate-text text-muted text-2xl">{{ $t('index.donate_5') }}</span>
-          <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/285/envelope_2709-fe0f.png" class="donate-emoji" alt="">
+          <span class="donate-text text-muted text-2xl">Imprimeixen 30 cartells</span>
+          <img src="@/assets/images/placard-emoji.png" class="donate-emoji" alt="">
         </b-card>
         <b-card to="/donate/10" href="/donate/10" padded rises class="donate-card" content-class="d-flex flex-column h-100">
           <span class="donate-amount text-4xl">10€</span>
-          <span class="donate-text text-muted text-2xl">{{ $t('index.donate_10') }}</span>
-          <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/285/microphone_1f3a4.png" class="donate-emoji" alt="">
+          <span class="donate-text text-muted text-2xl">Podem arribar a 10.000 persones en xarxes</span>
+          <img src="@/assets/images/mobile-emoji.png" class="donate-emoji" alt="">
         </b-card>
         <b-card to="/donate/30" href="/donate/30" padded rises class="donate-card" content-class="d-flex flex-column h-100">
           <span class="donate-amount text-4xl">30€</span>
-          <span class="donate-text text-muted text-2xl">{{ $t('index.donate_30') }}</span>
-          <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/285/speak-no-evil-monkey_1f64a.png" class="donate-emoji" alt="">
+          <span class="donate-text text-muted text-2xl">Ens permeten muntar un estand informatiu</span>
+          <img src="@/assets/images/talking-head-emoji.png" class="donate-emoji" alt="">
         </b-card>
         <b-card to="/donate/50" href="/donate/50" padded rises class="donate-card" content-class="d-flex flex-column h-100">
           <span class="donate-amount text-4xl">50€</span>
-          <span class="donate-text text-muted text-2xl">{{ $t('index.donate_50') }}</span>
-          <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/285/speaking-head_1f5e3-fe0f.png" class="donate-emoji" alt="">
+          <span class="donate-text text-muted text-2xl">Podem plenar un barri de cartells</span>
+          <img src="@/assets/images/houses-emoji.png" class="donate-emoji" alt="">
         </b-card>
         <b-card to="/donate/100" href="/donate/100" padded rises class="donate-card" content-class="d-flex flex-column h-100">
           <span class="donate-amount text-4xl">100€</span>
-          <span class="donate-text text-muted text-2xl">{{ $t('index.donate_100') }}</span>
-          <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/285/dog-face_1f436.png" class="donate-emoji" alt="">
+          <span class="donate-text text-muted text-2xl">Tot el material per a una manifestació</span>
+          <img src="@/assets/images/lgtb-emoji.png" class="donate-emoji" alt="">
         </b-card>
         <b-card padded content-class="d-flex h-100">
           <form class="d-flex flex-column h-100 w-100" @submit.prevent="donateOtherAmount">
@@ -88,10 +88,10 @@ const donateOtherAmount = () => {
             <div class="donate-text text-muted text-2xl">
               <transition name="fade" mode="out-in">
                 <span v-if="!otherAmount">
-                  {{ $t('index.donate_other') }}
+                  Altra quantitat
                 </span>
                 <div v-else class="card-button-wrapper">
-                  <button type="submit" class="card-button">{{ $t('index.continue') }} -&gt;</button>
+                  <button type="submit" class="card-button">Continua -&gt;</button>
                 </div>
               </transition>
             </div>

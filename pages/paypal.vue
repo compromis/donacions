@@ -1,11 +1,13 @@
 <script setup>
-  import { onMounted, ref } from 'vue'
+  import { onMounted, ref, nextTick } from 'vue'
   import { useFormData } from '@/composables/form-data.js'
   const form = useFormData()
+  const paypal = ref(null)
+  
   onMounted(() => {
-    const PayPalButton = ref(null)
-    console.log('Mounted', PayPalButton.value)
-    PayPalButton.value.click();
+    setTimeout(() => {
+      paypal.value.click();
+    }, 1000)
   })
 </script>
 
@@ -21,7 +23,7 @@
       <input type="hidden" name="currency_code" value="EUR">  
       <input type="hidden" name="amount" :value="form.amount">  
       <input type="hidden" name="hosted_button_id" value="WM4BS57LUNX6L">
-      <input type="submit" class="button button-inverted button-solid button-lg mt-4" name="submit" ref="PayPalButton" id="PayPalButton" value="Pagar amb Paypal" />
+      <input type="submit" class="button button-inverted button-solid button-lg mt-4" name="submit" ref="paypal" id="paypal" value="Pagar amb Paypal" />
     </form>
   </main>
 </template>

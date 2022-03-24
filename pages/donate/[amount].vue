@@ -25,7 +25,7 @@ const router = useRouter()
 const amount = route.params.amount
 
 // Funds
-const { data: funds } = await useFetch(API_BASE + 'funds')
+const { pending, data: funds } = await useFetch(API_BASE + 'funds', {lazy: true})
 
 // Personal data
 const formData = useFormData()
@@ -62,31 +62,36 @@ const submitDonation = async () => {
 <template>
   <main>
     <header class="hero">
-      <h1 class="text-white">{{ $t('app.hero') }}</h1>
+      <h1 class="text-white">Col·labora</h1>
     </header>
     <form @submit.prevent="submitDonation">
       <section class="section mb-5">
-        <b-input-group :title="$t('form.contribution')">
-            <b-field :span="['span-2', 'sm:span-4']" :label="$t('form.amount')">
+        <b-input-group title="Contribució">
+            <b-field :span="['span-2', 'sm:span-4']" label="Quantitat">
               <div class="d-flex">
                 <span class="text-xl">{{ amount }}€</span>
-                <nuxt-link to="/" class="edit-button link-muted-to-black" :title="$t('form.edit')">
+                <nuxt-link to="/" class="edit-button link-muted-to-black" title="Edita quantitat">
                   <pencil-icon />
                 </nuxt-link>
               </div>
             </b-field>
-            <b-select name="fund" :label="$t('form.fund')" variant="float" :span="['span-2', 'sm:span-4']" v-model="form.fund">
-              <optgroup v-for="fundGroup in funds" :key="fundGroup.name" :label="fundGroup.name">
-                <option v-for="fund in fundGroup.funds" :key="fund.id" :value="fund.id">{{ fund.name }}</option>
-              </optgroup>
+            <b-select name="fund" label="Fons" variant="float" :span="['span-2', 'sm:span-4']" v-model="form.fund">
+              <template v-if="!pending">
+                <optgroup v-for="fundGroup in funds" :key="fundGroup.name" :label="fundGroup.name">
+                  <option v-for="fund in fundGroup.funds" :key="fund.id" :value="fund.id">{{ fund.name }}</option>
+                </optgroup>
+              </template>
+              <template v-else>
+                <option disabled>Carregant...</option>
+              </template>
             </b-select>
         </b-input-group>
       </section>
       <section class="section mb-5">
-        <b-input-group :title="$t('form.personal_data')">
+        <b-input-group title="Dades personals">
             <b-input
               variant="float"
-              :label="$t('form.first_name')"
+              label="Nom"
               name="first_name"
               v-model="form.first_name"
               :error="errors.first_name"
@@ -107,7 +112,7 @@ const submitDonation = async () => {
             <b-input
               variant="float"
               type="email" 
-              :label="$t('form.email')"
+              label="Correu electrònic"
               name="email"
               v-model="form.email"
               :error="errors.email"
@@ -118,7 +123,7 @@ const submitDonation = async () => {
             />
             <b-input
               variant="float" 
-              :label="$t('form.ID')"
+              label="DNI/NIE"
               name="DNI"
               v-model="form.DNI"
               :error="errors.DNI"
@@ -127,7 +132,7 @@ const submitDonation = async () => {
             />
             <b-input
               variant="float" 
-              :label="$t('form.address')"
+              label="Adreça"
               name="address"
               v-model="form.address"
               :error="errors.address"
@@ -136,7 +141,7 @@ const submitDonation = async () => {
             />
             <b-input
               variant="float" 
-              :label="$t('form.municipality')"
+              label="Municipi"
               name="municipality"
               v-model="form.municipality"
               :error="errors.municipality"
@@ -146,7 +151,7 @@ const submitDonation = async () => {
             />
             <b-input
               variant="float" 
-              :label="$t('form.postal_code')"
+              label="Codi postal"
               name="postal_code"
               v-model="form.postal_code"
               :error="errors.postal_code"
@@ -159,18 +164,18 @@ const submitDonation = async () => {
           </b-input-group>
       </section>
       <section class="section">
-        <b-radio-group :title="$t('form.payment')">
+        <b-radio-group title="Pagament">
           <b-radio name="payment_method" value="paypal" focus-dark :card="{ size: 'sm' }" v-model="form.method" class="payment-method paypal">
             <img src="~assets/images/paypal.png" alt="PayPal, Visa, MasterCard" />
           </b-radio>
           <b-radio name="payment_method" value="wire" focus-dark :card="{ size: 'sm' }" v-model="form.method" class="payment-method wire text-lg">
-            {{ $t('form.wire') }}
+            Transferència bancària
           </b-radio>
         </b-radio-group>
       </section>
 
       <b-button type="submit" variant="inverted" size="xl" class="text-bold mt-5" has-shadow focus-dark>
-        {{ form.method == 'paypal' ? $t('form.button_paypal') : $t('form.button_wire') }} &gt;
+        {{ form.method == 'paypal' ? 'Pagar amb PayPal' : 'Següent pas' }} &gt;
       </b-button>
     </form>
   </main>

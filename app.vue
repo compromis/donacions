@@ -9,18 +9,7 @@ import BSelect from '@compromis/blobby/components/inputs/BSelect.vue'
   <div class="background">
     <b-nav collapse-at="lg">
       <template #logo-append>
-        <nuxt-link to="/">{{ $t('app.title') }}</nuxt-link>
-      </template>
-
-      <template #basic-nav>
-        <b-select class="d-none d-md-block locale-select" no-label v-model="$i18n.locale">
-          <option value="ca">Valencià</option>
-          <option value="es">Castellano</option>
-        </b-select>
-        <b-select class="d-md-none locale-select locale-select-compact" no-label v-model="$i18n.locale">
-          <option value="ca">VAL</option>
-          <option value="es">CAS</option>
-        </b-select>
+        <nuxt-link to="/">Donacions</nuxt-link>
       </template>
     </b-nav>
 

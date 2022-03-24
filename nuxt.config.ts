@@ -6,12 +6,5 @@ export default defineNuxtConfig({
     '@compromis/blobby/scss/blobby.scss'
   ],
 
-  buildModules: ['@intlify/nuxt3'],
-
-  intlify: {
-    localeDir: 'locales',
-    vueI18n: {
-      locale: 'ca'
-    }
-  }
+  buildModules: [],
 })
