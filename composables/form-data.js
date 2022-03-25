@@ -8,5 +8,6 @@ export const useFormData = () => useState('formData', () => ({
   DNI: '',
   address: '',
   municipality: '',
-  postal_code: ''
+  postal_code: '',
+  accept: false
 }))

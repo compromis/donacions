@@ -12,6 +12,7 @@ import BSelect from '@compromis/blobby/components/inputs/BSelect.vue'
 import BInputGroup from '@compromis/blobby/components/inputs/BInputGroup.vue'
 import BRadioGroup from '@compromis/blobby/components/inputs/BRadioGroup.vue'
 import BRadio from '@compromis/blobby/components/inputs/BRadio.vue'
+import BCheckbox from '@compromis/blobby/components/inputs/BCheckbox.vue'
 import BButton from '@compromis/blobby/components/button/BButton.vue'
 import PencilIcon from '@/components/icons/PencilIcon.vue'
 
@@ -46,6 +47,11 @@ const errors = ref([])
 
 // Submit form
 const submitDonation = async () => {
+  if (!form.accept) {
+    alert('Has de llegir i acceptar la informació de protecció de dades abans de continuar')
+    return
+  }
+
   const redirectTo = { paypal: 'paypal', wire: 'receipt' }
   const { data } = await axios.post(API_BASE + 'submit', qs.stringify(form), {
     headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
@@ -172,6 +178,20 @@ const submitDonation = async () => {
             Transferència bancària
           </b-radio>
         </b-radio-group>
+      </section>
+
+      <section class="section">
+        <p class="text-sm text-white mt-5">
+          Compromís en compliment del que estableix la <strong>Llei Orgànica 3/2018 del 5 de desembre</strong>, de <strong>Protecció de Dades Personals i Drets Digitals</strong>,
+          li informem que les dades personals que va a proporcionar-nos seran incorporades a un fitxer automatitzat de <strong>Compromís</strong>,
+          que com a responsable del fitxer, tractarà els mateixos a fi de tramitar la seua donació. Les dades no seran proporcionades a tercers a excepció que existisca una obligació legal.
+          Així mateix, li informem que podrà exercir els drets que li assisteixen d'accés, rectificació, cancel·lació i oposició al tractament de la informació que
+          li concerneix a través de correu postal a Compromís (Plaça del Pilar, 1 - 46001 València)
+          o bé per mitjà d'un correu electrònic a <a href="mailto:dades@compromis.net" class="link-white link-underlined">dades@compromis.net</a>, acompanyant una fotocòpia del document que acredite la seua identitat.
+          Més informació en <a href="https://compromis.net/avis-legal/" class="link-white link-underlined">Avís legal i política de privacitat</a>.
+        </p>
+
+        <b-checkbox name="accept" class="text-white" v-model="form.accept" dark required>He llegit i accepte la informació de protecció de dades.</b-checkbox>
       </section>
 
       <b-button type="submit" variant="inverted" size="xl" class="text-bold mt-5" has-shadow focus-dark>
