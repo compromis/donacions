@@ -51,17 +51,17 @@ const donateOtherAmount = () => {
         </b-card>
         <b-card to="/donate/10" href="/donate/10" padded rises class="donate-card" content-class="d-flex flex-column h-100">
           <span class="donate-amount text-4xl">10€</span>
-          <span class="donate-text text-muted text-2xl">Podem arribar a 10.000 persones en xarxes</span>
+          <span class="donate-text text-muted text-2xl">Ens fan arribar a 10.000 persones en xarxes</span>
           <img src="@/assets/images/mobile-emoji.png" class="donate-emoji" alt="">
         </b-card>
         <b-card to="/donate/30" href="/donate/30" padded rises class="donate-card" content-class="d-flex flex-column h-100">
           <span class="donate-amount text-4xl">30€</span>
-          <span class="donate-text text-muted text-2xl">Ens permeten muntar un estand informatiu</span>
+          <span class="donate-text text-muted text-2xl">Munten un estand informatiu</span>
           <img src="@/assets/images/talking-head-emoji.png" class="donate-emoji" alt="">
         </b-card>
         <b-card to="/donate/50" href="/donate/50" padded rises class="donate-card" content-class="d-flex flex-column h-100">
           <span class="donate-amount text-4xl">50€</span>
-          <span class="donate-text text-muted text-2xl">Podem plenar un barri de cartells</span>
+          <span class="donate-text text-muted text-2xl">Plenen un barri de cartells</span>
           <img src="@/assets/images/houses-emoji.png" class="donate-emoji" alt="">
         </b-card>
         <b-card to="/donate/100" href="/donate/100" padded rises class="donate-card" content-class="d-flex flex-column h-100">
