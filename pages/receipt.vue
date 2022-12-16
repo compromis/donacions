@@ -37,7 +37,7 @@ const form = useFormData()
         </b-card-section>
         <b-card-section class="span-2">
           <div class="text-muted">IBAN</div>
-          <div class="text-2xl">ES128 912 4891 2941 2123</div>
+          <div class="text-2xl">ES54 3159 0066 9826 7810 2829</div>
         </b-card-section>
       </b-card>
     </template>
