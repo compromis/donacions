@@ -24,6 +24,7 @@ const form = useFormData()
       </p>
       <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/320/apple/285/clapping-hands_1f44f.png" class="receipt-emoji" alt="">
     </b-card>
+
     <template v-if="form.method === 'wire'">
       <h4 class="mt-5 mb-3 text-2xl text-bold">Transferència bancària</h4>
       <b-card content-class="transfer-info">
@@ -35,9 +36,17 @@ const form = useFormData()
           <div class="text-muted">Concepte</div>
           <div class="text-2xl">{{ form.DNI }} Donació</div>
         </b-card-section>
-        <b-card-section class="span-2">
+        <b-card-section class="span-2" border-bottom>
           <div class="text-muted">IBAN</div>
           <div class="text-2xl">ES54 3159 0066 9826 7810 2829</div>
+        </b-card-section>
+        <b-card-section class="sm:span-2" border-right>
+          <div class="text-muted">BIC</div>
+          <div class="text-2xl">BCOEESMM159</div>
+        </b-card-section>
+        <b-card-section class="sm:span-2">
+          <div class="text-muted">Nom entitat</div>
+          <div class="text-2xl">Caixa Popular-Caixa Rural, S.C.C.V.</div>
         </b-card-section>
       </b-card>
     </template>
@@ -65,7 +74,7 @@ const form = useFormData()
 
 .transfer-info {
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 1fr 3fr;
   grid-template-rows: 1fr 1fr;
 }
 
