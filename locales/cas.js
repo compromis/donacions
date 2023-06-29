@@ -4,7 +4,7 @@ export default {
     "title": "Donaciones"
   },
   "index": {
-    "title": "¿Cuántoe quieres aportar hoy?",
+    "title": "¿Cuánto quieres aportar hoy?",
     "donate_5": "Imprimen 30 carteles",
     "donate_10": "Nos hace llegar a 10.000 personas en redes",
     "donate_30": "Montan un estand informativo",
