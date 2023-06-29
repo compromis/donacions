@@ -13,8 +13,8 @@
 
 <template>
   <main class="text-center text-white">
-    <h1 class="text-3xl text-center">Redirigint a PayPal...</h1>
-    <p class="mt-4 text-xl">Si no et redirigeix automàticament, fes clic al següent botó:</p>
+    <h1 class="text-3xl text-center">{{ $t('paypal.redirect') }}</h1>
+    <p class="mt-4 text-xl">{{ $t('paypal.text') }}</p>
     <form action="https://www.paypal.com/cgi-bin/webscr" id="PayPalPay" method="post">
       <input type="hidden" name="business" value="info@coaliciocompromis.net"> 
       <input type="hidden" name="cmd" value="_donations">  

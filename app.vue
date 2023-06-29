@@ -2,15 +2,13 @@
 import BNav from '@compromis/blobby/components/nav/BNav.vue'
 import BNavItem from '@compromis/blobby/components/nav/BNavItem.vue'
 import BFooter from '@compromis/blobby/components/footer/BFooter.vue'
-import BSelect from '@compromis/blobby/components/inputs/BSelect.vue'
 </script>
 
 <template>
   <div class="background">
     <b-nav collapse-at="lg">
-      <template #logo-append>
-        <nuxt-link to="/">Donacions</nuxt-link>
-      </template>
+      <b-nav-item to="/cas" v-if="$i18n.locale === 'val'">Castellano</b-nav-item>
+      <b-nav-item to="/" v-if="$i18n.locale === 'cas'">Valencià</b-nav-item>
     </b-nav>
 
     <div class="container">

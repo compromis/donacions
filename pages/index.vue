@@ -1,72 +1,72 @@
 <script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 import { useAmount } from '@/composables/amount.js'
 import BCard from '@compromis/blobby/components/card/BCard.vue'
 
 const router = useRouter()
+const { t } = useI18n()
 const { max: amountMax, min: amountMin } = useAmount().value
 const otherAmount = ref('')
 const otherAmountError = ref('')
 const donateOtherAmount = () => {
   // Check if otherAmount is an integer
   if (!Number.isInteger(otherAmount.value)) {
-    otherAmountError.value = 'La qüantitat ha de ser un nombre enter'
+    otherAmountError.value = t('errors.integer')
     return
   }
 
   // Check amount does not exceed max
   if (otherAmount.value > amountMax) {
-    otherAmountError.value = `La qüantitat màxima per a donacions és ${amountMax}€`
+    otherAmountError.value = t('errors.max', { amount: amountMax })
     return
   }
 
   // Check amount is more then min
   if (otherAmount.value < amountMin) {
-    otherAmountError.value = `La donació mínima és ${amountMin}€`
+    otherAmountError.value = t('errors.min', { amount: amountMin} )
     return
   }
 
-  router.push({
+  const localePath = useLocalePath()
+  router.push(localePath({
     name: 'donate-amount',
     params: {
       amount: otherAmount.value
     }
-  })
+  }))
 }
 </script>
 
 <template>
   <main>
     <header class="hero">
-      <h1 class="text-white" ref="title">Col·labora</h1>
+      <h1 class="text-white" ref="title">{{ $t('app.hero') }}</h1>
     </header>
     <section class="section">
-      <h2 class="mb-4">Quant vols aportar hui?</h2>
+      <h2 class="mb-4">{{ $t('index.title') }}</h2>
       <div class="donate-grid">
-        <b-card to="/donate/5" href="/donate/5" padded rises class="donate-card" content-class="d-flex flex-column h-100">
+        <b-card :to="localePath('/donate/5')" padded rises class="donate-card" content-class="d-flex flex-column h-100">
           <span class="donate-amount text-4xl">5€</span>
-          <span class="donate-text text-muted text-2xl">Imprimeixen 30 cartells</span>
+          <span class="donate-text text-muted text-2xl">{{ $t('index.donate_5') }}</span>
           <img src="@/assets/images/placard-emoji.png" class="donate-emoji" alt="">
         </b-card>
-        <b-card to="/donate/10" href="/donate/10" padded rises class="donate-card" content-class="d-flex flex-column h-100">
+        <b-card :to="localePath('/donate/10')" padded rises class="donate-card" content-class="d-flex flex-column h-100">
           <span class="donate-amount text-4xl">10€</span>
-          <span class="donate-text text-muted text-2xl">Ens fan arribar a 10.000 persones en xarxes</span>
+          <span class="donate-text text-muted text-2xl">{{ $t('index.donate_10') }}</span>
           <img src="@/assets/images/mobile-emoji.png" class="donate-emoji" alt="">
         </b-card>
-        <b-card to="/donate/30" href="/donate/30" padded rises class="donate-card" content-class="d-flex flex-column h-100">
+        <b-card :to="localePath('/donate/30')" padded rises class="donate-card" content-class="d-flex flex-column h-100">
           <span class="donate-amount text-4xl">30€</span>
-          <span class="donate-text text-muted text-2xl">Munten un estand informatiu</span>
+          <span class="donate-text text-muted text-2xl">{{ $t('index.donate_30') }}</span>
           <img src="@/assets/images/talking-head-emoji.png" class="donate-emoji" alt="">
         </b-card>
-        <b-card to="/donate/50" href="/donate/50" padded rises class="donate-card" content-class="d-flex flex-column h-100">
+        <b-card :to="localePath('/donate/50')" padded rises class="donate-card" content-class="d-flex flex-column h-100">
           <span class="donate-amount text-4xl">50€</span>
-          <span class="donate-text text-muted text-2xl">Plenen un barri de cartells</span>
+          <span class="donate-text text-muted text-2xl">{{ $t('index.donate_50') }}</span>
           <img src="@/assets/images/houses-emoji.png" class="donate-emoji" alt="">
         </b-card>
-        <b-card to="/donate/100" href="/donate/100" padded rises class="donate-card" content-class="d-flex flex-column h-100">
+        <b-card :to="localePath('/donate/100')" padded rises class="donate-card" content-class="d-flex flex-column h-100">
           <span class="donate-amount text-4xl">100€</span>
-          <span class="donate-text text-muted text-2xl">Tot el material per a una manifestació</span>
+          <span class="donate-text text-muted text-2xl">{{ $t('index.donate_100') }}</span>
           <img src="@/assets/images/lgtb-emoji.png" class="donate-emoji" alt="">
         </b-card>
         <b-card padded content-class="d-flex h-100">
@@ -88,10 +88,10 @@ const donateOtherAmount = () => {
             <div class="donate-text text-muted text-2xl">
               <transition name="fade" mode="out-in">
                 <span v-if="!otherAmount">
-                  Altra quantitat
+                  {{ $t('index.donate_other') }}
                 </span>
                 <div v-else class="card-button-wrapper">
-                  <button type="submit" class="card-button">Continua -&gt;</button>
+                  <button type="submit" class="card-button">{{ $t('index.continue') }} -&gt;</button>
                 </div>
               </transition>
             </div>

@@ -1,8 +1,6 @@
 <script setup>
 import qs from 'qs'
 import axios from 'axios'
-import { reactive, watch, onMounted } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
 import { useFormData } from '~/composables/form-data.js'
 import { useAmount } from '~/composables/amount.js'
 
@@ -46,9 +44,10 @@ onMounted(() => {
 const errors = ref([])
 
 // Submit form
+const { t } = useI18n()
 const submitDonation = async () => {
   if (!form.accept) {
-    alert('Has de llegir i acceptar la informació de protecció de dades abans de continuar')
+    alert(t('errors.accept'))
     return
   }
 
@@ -68,36 +67,36 @@ const submitDonation = async () => {
 <template>
   <main>
     <header class="hero">
-      <h1 class="text-white">Col·labora</h1>
+      <h1 class="text-white">{{ $t('app.hero') }}</h1>
     </header>
     <form @submit.prevent="submitDonation">
       <section class="section mb-5">
-        <b-input-group title="Contribució">
-            <b-field :span="['span-2', 'sm:span-4']" label="Quantitat">
+        <b-input-group :title="$t('form.contribution')">
+            <b-field :span="['span-2', 'sm:span-4']" :label="$t('form.amount')">
               <div class="d-flex">
                 <span class="text-xl">{{ amount }}€</span>
-                <nuxt-link to="/" class="edit-button link-muted-to-black" title="Edita quantitat">
+                <nuxt-link :to="localePath('/')" class="edit-button link-muted-to-black" :title="$t('form.edit')">
                   <pencil-icon />
                 </nuxt-link>
               </div>
             </b-field>
-            <b-select name="fund" label="Fons" variant="float" :span="['span-2', 'sm:span-4']" v-model="form.fund">
+            <b-select name="fund" :label="$t('form.fund')" variant="float" :span="['span-2', 'sm:span-4']" v-model="form.fund">
               <template v-if="!pending">
                 <optgroup v-for="fundGroup in funds" :key="fundGroup.name" :label="fundGroup.name">
                   <option v-for="fund in fundGroup.funds" :key="fund.id" :value="fund.id">{{ fund.name }}</option>
                 </optgroup>
               </template>
               <template v-else>
-                <option disabled>Carregant...</option>
+                <option disabled>{{ $t('form.loading') }}</option>
               </template>
             </b-select>
         </b-input-group>
       </section>
       <section class="section mb-5">
-        <b-input-group title="Dades personals">
+        <b-input-group :title="$t('form.personal_data')">
             <b-input
               variant="float"
-              label="Nom"
+              :label="$t('form.first_name')"
               name="first_name"
               v-model="form.first_name"
               :error="errors.first_name"
@@ -107,7 +106,7 @@ const submitDonation = async () => {
             />
             <b-input
               variant="float"
-              label="Cognoms"
+              :label="$t('form.last_name')"
               name="last_name"
               v-model="form.last_name"
               :error="errors.last_name"
@@ -118,7 +117,7 @@ const submitDonation = async () => {
             <b-input
               variant="float"
               type="email" 
-              label="Correu electrònic"
+              :label="$t('form.email')"
               name="email"
               v-model="form.email"
               :error="errors.email"
@@ -129,7 +128,7 @@ const submitDonation = async () => {
             />
             <b-input
               variant="float" 
-              label="DNI/NIE"
+              :label="$t('form.ID')"
               name="DNI"
               v-model="form.DNI"
               :error="errors.DNI"
@@ -138,7 +137,7 @@ const submitDonation = async () => {
             />
             <b-input
               variant="float" 
-              label="Adreça"
+              :label="$t('form.address')"
               name="address"
               v-model="form.address"
               :error="errors.address"
@@ -147,7 +146,7 @@ const submitDonation = async () => {
             />
             <b-input
               variant="float" 
-              label="Municipi"
+              :label="$t('form.municipality')"
               name="municipality"
               v-model="form.municipality"
               :error="errors.municipality"
@@ -157,7 +156,7 @@ const submitDonation = async () => {
             />
             <b-input
               variant="float" 
-              label="Codi postal"
+              :label="$t('form.postal_code')"
               name="postal_code"
               v-model="form.postal_code"
               :error="errors.postal_code"
@@ -170,12 +169,12 @@ const submitDonation = async () => {
           </b-input-group>
       </section>
       <section class="section">
-        <b-radio-group title="Pagament">
+        <b-radio-group :title="$t('form.payment')">
           <b-radio name="payment_method" value="paypal" focus-dark :card="{ size: 'sm' }" v-model="form.method" class="payment-method paypal">
-            <img src="~assets/images/paypal.png" alt="PayPal, Visa, MasterCard" />
+            <img src="~assets/images/paypal.png" :alt="$t('form.paypal')" />
           </b-radio>
           <b-radio name="payment_method" value="wire" focus-dark :card="{ size: 'sm' }" v-model="form.method" class="payment-method wire text-lg">
-            Transferència bancària
+            {{ $t('form.wire') }}
           </b-radio>
         </b-radio-group>
       </section>
@@ -191,11 +190,13 @@ const submitDonation = async () => {
           Més informació en <a href="https://compromis.net/avis-legal/" class="link-white link-underlined">Avís legal i política de privacitat</a>.
         </p>
 
-        <b-checkbox name="accept" class="text-white" v-model="form.accept" dark required>He llegit i accepte la informació de protecció de dades.</b-checkbox>
+        <b-checkbox name="accept" class="text-white" v-model="form.accept" dark required>
+          {{ $t('form.accept') }}
+        </b-checkbox>
       </section>
 
       <b-button type="submit" variant="inverted" size="xl" class="text-bold mt-5" has-shadow focus-dark>
-        {{ form.method == 'paypal' ? 'Pagar amb PayPal' : 'Següent pas' }} &gt;
+        {{ form.method == 'paypal' ? $t('form.button_paypal') : $t('form.button_wire') }} &gt;
       </b-button>
     </form>
   </main>
