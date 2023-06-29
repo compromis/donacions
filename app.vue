@@ -7,8 +7,8 @@ import BFooter from '@compromis/blobby/components/footer/BFooter.vue'
 <template>
   <div class="background">
     <b-nav collapse-at="lg">
-      <b-nav-item to="/cas" v-if="$i18n.locale === 'val'">Castellano</b-nav-item>
-      <b-nav-item to="/" v-if="$i18n.locale === 'cas'">Valencià</b-nav-item>
+      <b-nav-item :to="switchLocalePath('cas')" v-if="$i18n.locale === 'val'">Castellano</b-nav-item>
+      <b-nav-item :to="switchLocalePath('val')" v-if="$i18n.locale === 'cas'">Valencià</b-nav-item>
     </b-nav>
 
     <div class="container">
