@@ -16,6 +16,7 @@ import PencilIcon from '@/components/icons/PencilIcon.vue'
 
 // Api base
 const API_BASE = 'https://compromis.net/espai/donations/'
+const localePath = useLocalePath()
 
 // Amount to donate
 const { max: amountMax, min: amountMin } = useAmount().value
@@ -34,7 +35,7 @@ watch(() => form, (form) => { formData.value = form }, { deep: true })
 // Redirect back if invalid amount
 onMounted(() => {
   if (isNaN(amount) || amount > amountMax || amount < amountMin) {
-    router.push('/')
+    router.push(localePath('/'))
   }
 
   form.amount = amount
@@ -57,7 +58,7 @@ const submitDonation = async () => {
   })
   formData.value = form
   if (data.status === 'ok') {
-    router.push({ name: redirectTo[form.method] })
+    router.push(localePath({ name: redirectTo[form.method] }))
   } else {
     errors.value = data.errors
   }
