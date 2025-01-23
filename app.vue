@@ -9,6 +9,10 @@ import BFooter from '@compromis/blobby/components/footer/BFooter.vue'
     <b-nav collapse-at="lg">
       <b-nav-item :to="switchLocalePath('cas')" v-if="$i18n.locale === 'val'">Castellano</b-nav-item>
       <b-nav-item :to="switchLocalePath('val')" v-if="$i18n.locale === 'cas'">Valencià</b-nav-item>
+    
+      <template #logo-append>
+        Donacions
+      </template>
     </b-nav>
 
     <div class="container">
@@ -75,5 +79,9 @@ import BFooter from '@compromis/blobby/components/footer/BFooter.vue'
 
   .locale-select-compact.input-field {
     margin: 0 -.5rem;
+  }
+
+  .nav-logo-append {
+    margin-left: .5em;
   }
 </style>
