@@ -192,7 +192,7 @@ const submitDonation = async () => {
         </p>
 
         <b-checkbox name="accept" class="text-white" v-model="form.accept" dark required>
-          {{ $t('form.accept') }}
+          <strong>{{ $t('form.accept') }}</strong>
         </b-checkbox>
       </section>
 

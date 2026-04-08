@@ -57,6 +57,8 @@ export default {
     donation: "Dontaiu",
     wire_header: "Transferència bancària",
     account: "Beneficiari",
+    no_immediate_transfer:
+      "La transferència no ha de ser una transferència immediata.",
   },
   errors: {
     integer: "La qüantitat ha de ser un nombre enter",
