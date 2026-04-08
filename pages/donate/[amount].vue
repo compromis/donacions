@@ -73,7 +73,7 @@ const submitDonation = async () => {
     <form @submit.prevent="submitDonation">
       <section class="section mb-5">
         <b-input-group :title="$t('form.contribution')">
-            <b-field :span="['span-2', 'sm:span-4']" :label="$t('form.amount')">
+            <b-field :span="['span-4']" :label="$t('form.amount')">
               <div class="d-flex">
                 <span class="text-xl">{{ amount }}€</span>
                 <nuxt-link :to="localePath('/')" class="edit-button link-muted-to-black" :title="$t('form.edit')">
@@ -81,7 +81,7 @@ const submitDonation = async () => {
                 </nuxt-link>
               </div>
             </b-field>
-            <b-select name="fund" :label="$t('form.fund')" variant="float" :span="['span-2', 'sm:span-4']" v-model="form.fund">
+            <!--<b-select name="fund" :label="$t('form.fund')" variant="float" :span="['span-2', 'sm:span-4']" v-model="form.fund">
               <template v-if="!pending">
                 <optgroup v-for="fundGroup in funds" :key="fundGroup.name" :label="fundGroup.name">
                   <option v-for="fund in fundGroup.funds" :key="fund.id" :value="fund.id">{{ fund.name }}</option>
@@ -90,7 +90,7 @@ const submitDonation = async () => {
               <template v-else>
                 <option disabled>{{ $t('form.loading') }}</option>
               </template>
-            </b-select>
+            </b-select>-->
         </b-input-group>
       </section>
       <section class="section mb-5">

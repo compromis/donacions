@@ -36,7 +36,11 @@ const form = useFormData()
         </b-card-section>
          <b-card-section border-bottom class="span-1 sm:span-2">
           <div class="text-muted">{{ $t('receipt.subject') }}</div>
-          <div class="text-2xl">{{ form.DNI }} {{ $t('receipt.donation') }}</div>
+          <div class="text-2xl">Donació {{ form.first_name }} {{ form.last_name }} {{ form.DNI }} {{ $t('receipt.donation') }}</div>
+        </b-card-section>
+        <b-card-section class="span-2" border-bottom>
+          <div class="text-muted">{{ $t('receipt.account') }}</div>
+          <div class="text-2xl">Compromís</div>
         </b-card-section>
         <b-card-section class="span-2" border-bottom>
           <div class="text-muted">IBAN</div>
