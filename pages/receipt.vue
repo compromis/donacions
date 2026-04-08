@@ -46,15 +46,16 @@ const form = useFormData()
           <div class="text-muted">IBAN</div>
           <div class="text-2xl">ES54 3159 0066 9826 7810 2829</div>
         </b-card-section>
-        <b-card-section class="sm:span-2" border-right>
+        <b-card-section class="sm:span-2" border-right border-bottom>
           <div class="text-muted">BIC</div>
           <div class="text-2xl">BCOEESMM159</div>
         </b-card-section>
-        <b-card-section class="sm:span-2">
+        <b-card-section class="sm:span-2" border-bottom>
           <div class="text-muted">{{ $t('receipt.bank') }}</div>
           <div class="text-2xl">Caixa Popular-Caixa Rural, S.C.C.V.</div>
         </b-card-section>
         <b-card-section class="span-2 sm:span-2">
+           <div class="text-muted">{{ $t('receipt.donation') }}</div>
           <div class="text-muted">{{ $t('receipt.no_immediate_transfer') }}</div>
         </b-card-section>
       </b-card>
